@@ -28,12 +28,10 @@ Er unterstützt sowohl das Massenbannen von Benutzern anhand einer externen List
    ```
 
 3. **Bot-Token konfigurieren**:
-   - Erstelle eine `.env`-Datei im Projektordner.
-   - Füge folgenden Inhalt hinzu:
      ```env
-     BOT_TOKEN=DEIN_BOT_TOKEN
+     const token = 'DEIN_BOT_TOKEN';
      ```
-   - Ersetze `DEIN_BOT_TOKEN` mit deinem tatsächlichen Discord-Bot-Token.
+Ersetze `DEIN_BOT_TOKEN` mit deinem tatsächlichen Discord-Bot-Token.
 
 ---
 
