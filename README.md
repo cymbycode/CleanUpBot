@@ -79,4 +79,3 @@ Falls der Bot nicht startet oder ein Fehler auftritt:
 
 Dieses Projekt steht unter der **MIT-Lizenz**.  
 Feel free to contribute! 😊
-```
