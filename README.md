@@ -1,4 +1,3 @@
-```markdown
 # CleanUpBot
 
 CleanUpBot ist ein Discord-Bot, der deinen Server mit verschiedenen Befehlen von unerwünschten Benutzern befreit.  
