@@ -63,7 +63,6 @@ Er unterstützt sowohl das Massenbannen von Benutzern anhand einer externen List
 
 ## 🔒 Sicherheitshinweise
 
-- **Schütze deinen Bot-Token!** Nutze `.env`, um ihn sicher zu speichern, und teile ihn niemals öffentlich.
 - **Verwende den Bot verantwortungsbewusst**, da er massenhafte Banns und Unbanns durchführen kann.
 - **Nur vertrauenswürdige Personen sollten Zugriff auf den Bot haben!**
 
