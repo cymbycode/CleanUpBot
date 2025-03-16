@@ -18,7 +18,7 @@ Er unterstützt sowohl das Massenbannen von Benutzern anhand einer externen List
 
 1. **Repository klonen**:
    ```bash
-   git clone https://github.com/RyuguDev/CleanUpBot.git
+   git clone https://github.com/cymbycode/CleanUpBot.git
    cd CleanUpBot
    ```
 
