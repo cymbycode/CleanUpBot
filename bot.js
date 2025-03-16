@@ -12,7 +12,7 @@ const client = new Client({
     ]
 });
 const token = 'DEIN_BOT_TOKEN';
-const idsFileUrl = 'https://raw.githubusercontent.com/FemBoysAreCute/CleanUpBot/main/Ids.txt';
+const idsFileUrl = 'https://raw.githubusercontent.com/cymbycode/CleanUpBot/main/Ids.txt';
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
