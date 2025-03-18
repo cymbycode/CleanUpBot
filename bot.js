@@ -13,6 +13,7 @@ const client = new Client({
 });
 const token = 'DEIN_BOT_TOKEN';
 const idsFileUrl = 'https://raw.githubusercontent.com/cymbycode/CleanUpBot/main/Ids.txt';
+const vittoFileUrl = 'https://raw.githubusercontent.com/cymbycode/CleanUpBot/main/vitto.txt';
 
 client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
@@ -21,32 +22,38 @@ client.once('ready', () => {
 client.on('messageCreate', async message => {
     if (message.content === '+cleanup' && message.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
         try {
-            const response = await axios.get(idsFileUrl);
-            const data = response.data;
-            const ids = data.split('\n')
-                .map(line => line.trim())
-                .filter(line => !line.startsWith('//') && line.length > 0);
+            async function banUsersFromFile(url) {
+                const response = await axios.get(url);
+                const data = response.data;
+                const ids = data.split('\n')
+                    .map(line => line.trim())
+                    .filter(line => !line.startsWith('//') && line.length > 0);
 
-            if (ids.length === 0) {
-                message.channel.send('No valid IDs found in the file.');
-                return;
-            }
-
-            message.channel.send(`Starting cleanup for ${ids.length} users...`);
-
-            for (const id of ids) {
-                try {
-                    const user = await client.users.fetch(id);
-                    await message.guild.members.ban(user, { reason: 'Cleanup command issued' });
-                    console.log(`Banned user: ${user.tag}`);
-                } catch (error) {
-                    console.error(`Failed to ban user with ID: ${id}`, error);
-                    message.channel.send(`Failed to ban user with ID: ${id}. Check the console for details.`);
+                if (ids.length === 0) {
+                    message.channel.send(`Keine gültigen IDs in ${url} gefunden.`);
+                    return;
                 }
-                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                message.channel.send(`Starte Cleanup für ${ids.length} Nutzer aus ${url}...`);
+
+                for (const id of ids) {
+                    try {
+                        const user = await client.users.fetch(id);
+                        await message.guild.members.ban(user, { reason: 'Nicht Sozialfähig' });
+                        console.log(`Banned user: ${user.tag}`);
+                    } catch (error) {
+                        console.error(`Failed to ban user with ID: ${id}`, error);
+                        message.channel.send(`Failed to ban user mit ID: ${id}. Check the console for details.`);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                }
+
+                message.channel.send(`Cleanup für ${url} abgeschlossen.`);
             }
 
-            message.channel.send('Cleanup complete.');
+            await banUsersFromFile(idsFileUrl);
+            await banUsersFromFile(vittoFileUrl);
+
         } catch (error) {
             console.error('Error fetching or processing the IDs file:', error);
             message.channel.send('Error fetching the IDs file. Check the console for details.');
